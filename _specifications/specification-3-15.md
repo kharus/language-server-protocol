@@ -34,7 +34,6 @@ Currently the following header fields are supported:
 |:------------------|:------------|:------------|
 | Content-Length    | number      | The length of the content part in bytes. This header is required. |
 | Content-Type      | string      | The mime type of the content part. Defaults to application/vscode-jsonrpc; charset=utf-8 |
-{: .table .table-bordered .table-responsive}
 
 The header part is encoded using the `ascii` encoding. This includes the `\r\n` separating the header and content part.
 
@@ -180,7 +179,7 @@ Notification and requests whose methods start with `$/` are messages which are p
 The base protocol offers support for request cancellation. To cancel a request, a notification message with the following properties is sent:
 
 _Notification_:
-* method: '$/cancelRequest'
+* method: `$/cancelRequest`
 * params: `CancelParams` defined as follows:
 
 ```typescript
@@ -203,7 +202,7 @@ The base protocol offers also support to report progress in a generic fashion. T
 A progress notification has the following properties:
 
 _Notification_:
-* method: '$/progress'
+* method: `$/progress`
 * params: `ProgressParams` defined as follows:
 
 ```typescript
@@ -1345,7 +1344,7 @@ Until the server has responded to the `initialize` request with an `InitializeRe
 The `initialize` request may only be sent once.
 
 _Request_:
-* method: 'initialize'
+* method: `initialize`
 * params: `InitializeParams` defined as follows:
 
 ```typescript
@@ -1863,7 +1862,7 @@ interface ServerCapabilities {
 The initialized notification is sent from the client to the server after the client received the result of the `initialize` request but before the client is sending any other request or notification to the server. The server can use the `initialized` notification for example to dynamically register capabilities. The `initialized` notification may only be sent once.
 
 _Notification_:
-* method: 'initialized'
+* method: `initialized`
 * params: `InitializedParams` defined as follows:
 
 ```typescript
@@ -1889,7 +1888,7 @@ A notification to ask the server to exit its process.
 The server should exit with `success` code 0 if the shutdown request has been received before; otherwise with `error` code 1.
 
 _Notification_:
-* method: 'exit'
+* method: `exit`
 * params: void
 
 #### <a href="#window_showMessage" name="window_showMessage" class="anchor">ShowMessage Notification (:arrow_left:)</a>
@@ -1897,7 +1896,7 @@ _Notification_:
 The show message notification is sent from a server to a client to ask the client to display a particular message in the user interface.
 
 _Notification_:
-* method: 'window/showMessage'
+* method: `window/showMessage`
 * params: `ShowMessageParams` defined as follows:
 
 ```typescript
@@ -1942,7 +1941,7 @@ export namespace MessageType {
 The show message request is sent from a server to a client to ask the client to display a particular message in the user interface. In addition to the show message notification the request allows to pass actions and to wait for an answer from the client.
 
 _Request_:
-* method: 'window/showMessageRequest'
+* method: `window/showMessageRequest`
 * params: `ShowMessageRequestParams` defined as follows:
 
 _Response_:
@@ -1984,7 +1983,7 @@ interface MessageActionItem {
 The log message notification is sent from the server to the client to ask the client to log a particular message.
 
 _Notification_:
-* method: 'window/logMessage'
+* method: `window/logMessage`
 * params: `LogMessageParams` defined as follows:
 
 ```typescript
@@ -2007,7 +2006,7 @@ The `window/workDoneProgress/create` request is sent from the server to the clie
 
 _Request_:
 
-* method: 'window/workDoneProgress/create'
+* method: `window/workDoneProgress/create`
 * params: `WorkDoneProgressCreateParams` defined as follows:
 
 ```typescript
@@ -2022,7 +2021,7 @@ export interface WorkDoneProgressCreateParams {
 _Response_:
 
 * result: void
-* error: code and message set in case an exception happens during the 'window/workDoneProgress/create' request. In case an error occurs a server must not send any progress notification using the token provided in the `WorkDoneProgressCreateParams`.
+* error: code and message set in case an exception happens during the `window/workDoneProgress/create` request. In case an error occurs a server must not send any progress notification using the token provided in the `WorkDoneProgressCreateParams`.
 
 #### <a href="#window_workDoneProgress_cancel" name="window_workDoneProgress_cancel" class="anchor"> Canceling a Work Done Progress (:arrow_right:)</a>
 
@@ -2030,7 +2029,7 @@ The `window/workDoneProgress/cancel` notification is sent from the client to the
 
 _Notification_:
 
-* method: 'window/workDoneProgress/cancel'
+* method: `window/workDoneProgress/cancel`
 * params: `WorkDoneProgressCancelParams` defined as follows:
 
 ```typescript
@@ -2047,8 +2046,8 @@ export interface WorkDoneProgressCancelParams {
 The telemetry notification is sent from the server to the client to ask the client to log a telemetry event.
 
 _Notification_:
-* method: 'telemetry/event'
-* params: 'any'
+* method: `telemetry/event`
+* params: `any`
 
 #### <a href="#client_registerCapability" name="client_registerCapability" class="anchor">Register Capability (:arrow_right_hook:)</a>
 
@@ -2057,7 +2056,7 @@ The `client/registerCapability` request is sent from the server to the client to
 Server must not register the same capability both statically through the initialize result and dynamically for the same document selector. If a server wants to support both static and dynamic registration it needs to check the client capability in the initialize request and only register the capability statically if the client doesn't support dynamic registration for that capability.
 
 _Request_:
-* method: 'client/registerCapability'
+* method: `client/registerCapability`
 * params: `RegistrationParams`
 
 Where `RegistrationParams` are defined as follows:
@@ -2123,7 +2122,7 @@ _Response_:
 The `client/unregisterCapability` request is sent from the server to the client to unregister a previously registered capability.
 
 _Request_:
-* method: 'client/unregisterCapability'
+* method: `client/unregisterCapability`
 * params: `UnregistrationParams`
 
 Where `UnregistrationParams` are defined as follows:
@@ -2209,7 +2208,7 @@ export interface WorkspaceFoldersServerCapabilities {
 ```
 
 _Request_:
-* method: 'workspace/workspaceFolders'
+* method: `workspace/workspaceFolders`
 * params: none
 
 _Response_:
@@ -2244,7 +2243,7 @@ The `workspace/didChangeWorkspaceFolders` notification is sent from the client t
 ```
 
 _Notification_:
-* method: 'workspace/didChangeWorkspaceFolders'
+* method: `workspace/didChangeWorkspaceFolders`
 * params: `DidChangeWorkspaceFoldersParams` defined as follows:
 
 ```typescript
@@ -2289,7 +2288,7 @@ export interface DidChangeConfigurationClientCapabilities {
 ```
 
 _Notification_:
-* method: 'workspace/didChangeConfiguration',
+* method: `workspace/didChangeConfiguration`,
 * params: `DidChangeConfigurationParams` defined as follows:
 
 ```typescript
@@ -2314,7 +2313,7 @@ _Client Capability_:
 * property type: `boolean`
 
 _Request_:
-* method: 'workspace/configuration'
+* method: `workspace/configuration`
 * params: `ConfigurationParams` defined as follows
 
 ```typescript
@@ -2337,7 +2336,7 @@ export interface ConfigurationItem {
 
 _Response_:
 * result: any[]
-* error: code and message set in case an exception happens during the 'workspace/configuration' request
+* error: code and message set in case an exception happens during the `workspace/configuration` request
 
 #### <a href="#workspace_didChangeWatchedFiles" name="workspace_didChangeWatchedFiles" class="anchor">DidChangeWatchedFiles Notification (:arrow_right:)</a>
 
@@ -2422,7 +2421,7 @@ export namespace WatchKind {
 ```
 
 _Notification_:
-* method: 'workspace/didChangeWatchedFiles'
+* method: `workspace/didChangeWatchedFiles`
 * params: `DidChangeWatchedFilesParams` defined as follows:
 
 ```typescript
@@ -2522,7 +2521,7 @@ export interface WorkspaceSymbolRegistrationOptions
 ```
 
 _Request_:
-* method: 'workspace/symbol'
+* method: `workspace/symbol`
 * params: `WorkspaceSymbolParams` defined as follows:
 
 ```typescript
@@ -2587,7 +2586,7 @@ export interface ExecuteCommandRegistrationOptions
 ```
 
 _Request:_
-* method: 'workspace/executeCommand'
+* method: `workspace/executeCommand`
 * params: `ExecuteCommandParams` defined as follows:
 
 ```typescript
@@ -2621,7 +2620,7 @@ _Client Capability_:
 See also the [WorkspaceEditClientCapabilities](#workspaceEditClientCapabilities) for the supported capabilities of a workspace edit.
 
 _Request_:
-* method: 'workspace/applyEdit'
+* method: `workspace/applyEdit`
 * params: `ApplyWorkspaceEditParams` defined as follows:
 
 ```typescript
@@ -2732,7 +2731,7 @@ See general synchronization [server capabilities](#textDocument_synchronization_
 _Registration Options_: [`TextDocumentRegistrationOptions`](#textDocumentRegistrationOptions)
 
 _Notification_:
-* method: 'textDocument/didOpen'
+* method: `textDocument/didOpen`
 * params: `DidOpenTextDocumentParams` defined as follows:
 
 ```typescript
@@ -2770,7 +2769,7 @@ export interface TextDocumentChangeRegistrationOptions
 ```
 
 _Notification_:
-* method: 'textDocument/didChange'
+* method: `textDocument/didChange`
 * params: `DidChangeTextDocumentParams` defined as follows:
 
 ```typescript
@@ -2793,7 +2792,7 @@ interface DidChangeTextDocumentParams {
 	 * To mirror the content of a document using change events,
 	 * use the following approach:
 	 * - start with the same initial content
-	 * - apply the 'textDocument/didChange' notifications
+	 * - apply the `textDocument/didChange` notifications
 	 *     in the order you receive them.
 	 * - apply the `TextDocumentContentChangeEvent`s
 	 *     in a single notification in the order you receive them.
@@ -2850,7 +2849,7 @@ The capability indicates that the server is interested in `textDocument/willSave
 _Registration Options_: `TextDocumentRegistrationOptions`
 
 _Notification_:
-* method: 'textDocument/willSave'
+* method: `textDocument/willSave`
 * params: `WillSaveTextDocumentParams` defined as follows:
 
 ```typescript
@@ -2864,7 +2863,7 @@ export interface WillSaveTextDocumentParams {
 	textDocument: TextDocumentIdentifier;
 
 	/**
-	 * The 'TextDocumentSaveReason'.
+	 * The `TextDocumentSaveReason`.
 	 */
 	reason: number;
 }
@@ -2911,7 +2910,7 @@ The capability indicates that the server is interested in `textDocument/willSave
 _Registration Options_: `TextDocumentRegistrationOptions`
 
 _Request_:
-* method: 'textDocument/willSaveWaitUntil'
+* method: `textDocument/willSaveWaitUntil`
 * params: `WillSaveTextDocumentParams`
 
 _Response_:
@@ -2955,7 +2954,7 @@ export interface TextDocumentSaveRegistrationOptions
 ```
 
 _Notification_:
-* method: 'textDocument/didSave'
+* method: `textDocument/didSave`
 * params: `DidSaveTextDocumentParams` defined as follows:
 
 ```typescript
@@ -2986,7 +2985,7 @@ See general synchronization [server capabilities](#textDocument_synchronization_
 _Registration Options_: `TextDocumentRegistrationOptions`
 
 _Notification_:
-* method: 'textDocument/didClose'
+* method: `textDocument/didClose`
 * params: `DidCloseTextDocumentParams` defined as follows:
 
 ```typescript
@@ -3128,7 +3127,7 @@ export interface PublishDiagnosticsClientCapabilities {
 ```
 
 _Notification_:
-* method: 'textDocument/publishDiagnostics'
+* method: `textDocument/publishDiagnostics`
 * params: `PublishDiagnosticsParams` defined as follows:
 
 ```typescript
@@ -3154,7 +3153,7 @@ interface PublishDiagnosticsParams {
 
 #### <a href="#textDocument_completion" name="textDocument_completion" class="anchor">Completion Request (:leftwards_arrow_with_hook:)</a>
 
-The Completion request is sent from the client to the server to compute completion items at a given cursor position. Completion items are presented in the [IntelliSense](https://code.visualstudio.com/docs/editor/intellisense). If computing full completion items is expensive, servers can additionally provide a handler for the completion item resolve request ('completionItem/resolve'). This request is sent when a completion item is selected in the user interface. A typical use case is for example: the 'textDocument/completion' request doesn't fill in the `documentation` property for returned completion items since it is expensive to compute. When the item is selected in the user interface then a 'completionItem/resolve' request is sent with the selected completion item as a parameter. The returned completion item should have the documentation property filled in. The request can only delay the computation of the `detail` and `documentation` properties. Other properties like `sortText`, `filterText`, `insertText`, `textEdit` and `additionalTextEdits` must be provided in the `textDocument/completion` response and must not be changed during resolve.
+The Completion request is sent from the client to the server to compute completion items at a given cursor position. Completion items are presented in the [IntelliSense](https://code.visualstudio.com/docs/editor/intellisense). If computing full completion items is expensive, servers can additionally provide a handler for the completion item resolve request ('completionItem/resolve'). This request is sent when a completion item is selected in the user interface. A typical use case is for example: the `textDocument/completion` request doesn't fill in the `documentation` property for returned completion items since it is expensive to compute. When the item is selected in the user interface then a `completionItem/resolve` request is sent with the selected completion item as a parameter. The returned completion item should have the documentation property filled in. The request can only delay the computation of the `detail` and `documentation` properties. Other properties like `sortText`, `filterText`, `insertText`, `textEdit` and `additionalTextEdits` must be provided in the `textDocument/completion` response and must not be changed during resolve.
 
 _Client Capability_:
 * property name (optional): `textDocument.completion`
@@ -3295,7 +3294,7 @@ export interface CompletionRegistrationOptions
 ```
 
 _Request_:
-* method: 'textDocument/completion'
+* method: `textDocument/completion`
 * params: `CompletionParams` defined as follows:
 
 ```typescript
@@ -3658,7 +3657,7 @@ text        ::= .*
 The request is sent from the client to the server to resolve additional information for a given completion item.
 
 _Request_:
-* method: 'completionItem/resolve'
+* method: `completionItem/resolve`
 * params: `CompletionItem`
 
 _Response_:
@@ -3705,7 +3704,7 @@ export interface HoverRegistrationOptions
 ```
 
 _Request_:
-* method: 'textDocument/hover'
+* method: `textDocument/hover`
 * params: `HoverParams` defined as follows:
 
 ```typescript
@@ -3842,7 +3841,7 @@ export interface SignatureHelpRegistrationOptions
 ```
 
 _Request_:
-* method: 'textDocument/signatureHelp'
+* method: `textDocument/signatureHelp`
 * params: `SignatureHelpParams` defined as follows:
 
 ```typescript
@@ -4351,7 +4350,7 @@ export interface DocumentHighlightRegistrationOptions
 ```
 
 _Request_:
-* method: 'textDocument/documentHighlight'
+* method: `textDocument/documentHighlight`
 * params: `DocumentHighlightParams` defined as follows:
 
 ```typescript
@@ -4466,7 +4465,7 @@ export interface DocumentSymbolRegistrationOptions
 ```
 
 _Request_:
-* method: 'textDocument/documentSymbol'
+* method: `textDocument/documentSymbol`
 * params: `DocumentSymbolParams` defined as follows:
 
 ```typescript
@@ -4691,7 +4690,7 @@ export interface CodeActionRegistrationOptions
 ```
 
 _Request_:
-* method: 'textDocument/codeAction'
+* method: `textDocument/codeAction`
 * params: `CodeActionParams` defined as follows:
 
 ```typescript
@@ -4738,12 +4737,12 @@ export namespace CodeActionKind {
 	export const Empty: CodeActionKind = '';
 
 	/**
-	 * Base kind for quickfix actions: 'quickfix'.
+	 * Base kind for quickfix actions: `quickfix`.
 	 */
 	export const QuickFix: CodeActionKind = 'quickfix';
 
 	/**
-	 * Base kind for refactoring actions: 'refactor'.
+	 * Base kind for refactoring actions: `refactor`.
 	 */
 	export const Refactor: CodeActionKind = 'refactor';
 
@@ -4761,7 +4760,7 @@ export namespace CodeActionKind {
 	export const RefactorExtract: CodeActionKind = 'refactor.extract';
 
 	/**
-	 * Base kind for refactoring inline actions: 'refactor.inline'.
+	 * Base kind for refactoring inline actions: `refactor.inline`.
 	 *
 	 * Example inline actions:
 	 *
@@ -4773,7 +4772,7 @@ export namespace CodeActionKind {
 	export const RefactorInline: CodeActionKind = 'refactor.inline';
 
 	/**
-	 * Base kind for refactoring rewrite actions: 'refactor.rewrite'.
+	 * Base kind for refactoring rewrite actions: `refactor.rewrite`.
 	 *
 	 * Example rewrite actions:
 	 *
@@ -4924,7 +4923,7 @@ export interface CodeLensRegistrationOptions
 ```
 
 _Request_:
-* method: 'textDocument/codeLens'
+* method: `textDocument/codeLens`
 * params: `CodeLensParams` defined as follows:
 
 ```typescript
@@ -4974,7 +4973,7 @@ interface CodeLens {
 The CodeLens resolve request is sent from the client to the server to resolve the command for a given CodeLens item.
 
 _Request_:
-* method: 'codeLens/resolve'
+* method: `codeLens/resolve`
 * params: `CodeLens`
 
 _Response_:
@@ -5026,7 +5025,7 @@ export interface DocumentLinkRegistrationOptions
 ```
 
 _Request_:
-* method: 'textDocument/documentLink'
+* method: `textDocument/documentLink`
 * params: `DocumentLinkParams` defined as follows:
 
 ```typescript
@@ -5086,7 +5085,7 @@ interface DocumentLink {
 The document link resolve request is sent from the client to the server to resolve the target of a given document link.
 
 _Request_:
-* method: 'documentLink/resolve'
+* method: `documentLink/resolve`
 * params: `DocumentLink`
 
 _Response_:
@@ -5135,7 +5134,7 @@ export interface DocumentColorRegistrationOptions
 
 _Request_:
 
-* method: 'textDocument/documentColor'
+* method: `textDocument/documentColor`
 * params: `DocumentColorParams` defined as follows
 
 ```typescript
@@ -5191,7 +5190,7 @@ interface Color {
 }
 ```
 * partial result: `ColorInformation[]`
-* error: code and message set in case an exception happens during the 'textDocument/documentColor' request
+* error: code and message set in case an exception happens during the `textDocument/documentColor` request
 
 #### <a href="#textDocument_colorPresentation" name="textDocument_colorPresentation" class="anchor">Color Presentation Request (:leftwards_arrow_with_hook:)</a>
 
@@ -5205,7 +5204,7 @@ This request has no special capabilities and registration options since it is se
 
 _Request_:
 
-* method: 'textDocument/colorPresentation'
+* method: `textDocument/colorPresentation`
 * params: `ColorPresentationParams` defined as follows
 
 ```typescript
@@ -5257,7 +5256,7 @@ interface ColorPresentation {
 ```
 
 * partial result: `ColorPresentation[]`
-* error: code and message set in case an exception happens during the 'textDocument/colorPresentation' request
+* error: code and message set in case an exception happens during the `textDocument/colorPresentation` request
 
 #### <a href="#textDocument_formatting" name="textDocument_formatting" class="anchor">Document Formatting Request  (:leftwards_arrow_with_hook:)</a>
 
@@ -5293,7 +5292,7 @@ export interface DocumentFormattingRegistrationOptions
 ```
 
 _Request_:
-* method: 'textDocument/formatting'
+* method: `textDocument/formatting`
 * params: `DocumentFormattingParams` defined as follows
 
 ```typescript
@@ -5390,7 +5389,7 @@ export interface DocumentRangeFormattingRegistrationOptions
 ```
 
 _Request_:
-* method: 'textDocument/rangeFormatting',
+* method: `textDocument/rangeFormatting`,
 * params: `DocumentRangeFormattingParams` defined as follows:
 
 ```typescript
@@ -5459,7 +5458,7 @@ export interface DocumentOnTypeFormattingRegistrationOptions
 ```
 
 _Request_:
-* method: 'textDocument/onTypeFormatting'
+* method: `textDocument/onTypeFormatting`
 * params: `DocumentOnTypeFormattingParams` defined as follows:
 
 ```typescript
@@ -5528,7 +5527,7 @@ export interface RenameRegistrationOptions
 ```
 
 _Request_:
-* method: 'textDocument/rename'
+* method: `textDocument/rename`
 * params: `RenameParams` defined as follows
 
 ```typescript
@@ -5554,7 +5553,7 @@ _Response_:
 The prepare rename request is sent from the client to the server to setup and test the validity of a rename operation at a given location.
 
 _Request_:
-* method: 'textDocument/prepareRename'
+* method: `textDocument/prepareRename`
 * params: `PrepareRenameParams` defined as follows:
 ```typescript
 export interface PrepareRenameParams extends TextDocumentPositionParams {
@@ -5562,7 +5561,7 @@ export interface PrepareRenameParams extends TextDocumentPositionParams {
 ```
 
 _Response_:
-* result: [`Range`](#range) \| `{ range: Range, placeholder: string }` \| `null` describing the range of the string to rename and optionally a placeholder text of the string content to be renamed. If `null` is returned then it is deemed that a 'textDocument/rename' request is not valid at the given position.
+* result: [`Range`](#range) \| `{ range: Range, placeholder: string }` \| `null` describing the range of the string to rename and optionally a placeholder text of the string content to be renamed. If `null` is returned then it is deemed that a `textDocument/rename` request is not valid at the given position.
 * error: code and message set in case the element can't be renamed. Clients should show the information in their user interface.
 
 #### <a href="#textDocument_foldingRange" name="textDocument_foldingRange" class="anchor">Folding Range Request (:leftwards_arrow_with_hook:)</a>
@@ -5619,7 +5618,7 @@ export interface FoldingRangeRegistrationOptions
 
 _Request_:
 
-* method: 'textDocument/foldingRange'
+* method: `textDocument/foldingRange`
 * params: `FoldingRangeParams` defined as follows
 
 ```typescript
@@ -5684,7 +5683,7 @@ export interface FoldingRange {
 	/**
 	 * Describes the kind of the folding range such as `comment` or `region`.
 	 * The kind is used to categorize folding ranges and used by commands
-	 * like 'Fold all comments'.
+	 * like `Fold all comments`.
 	 * See [FoldingRangeKind](#FoldingRangeKind) for an enumeration of
 	 * standardized kinds.
 	 */
@@ -5693,7 +5692,7 @@ export interface FoldingRange {
 ```
 
 * partial result: `FoldingRange[]`
-* error: code and message set in case an exception happens during the 'textDocument/foldingRange' request
+* error: code and message set in case an exception happens during the `textDocument/foldingRange` request
 
 #### <a href="#textDocument_selectionRange" name="textDocument_selectionRange" class="anchor">Selection Range Request (:leftwards_arrow_with_hook:)</a>
 
@@ -5741,7 +5740,7 @@ export interface SelectionRangeRegistrationOptions
 
 _Request_:
 
-* method: 'textDocument/selectionRange'
+* method: `textDocument/selectionRange`
 * params: `SelectionRangeParams` defined as follows
 
 ```typescript
@@ -5779,7 +5778,7 @@ export interface SelectionRange {
 ```
 
 * partial result: `SelectionRange[]`
-* error: code and message set in case an exception happens during the 'textDocument/selectionRange' request
+* error: code and message set in case an exception happens during the `textDocument/selectionRange` request
 
 ### Implementation considerations
 
