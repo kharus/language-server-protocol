@@ -22,11 +22,11 @@ All new 3.15 features are tagged with a corresponding since version 3.15 text or
 ## <a href="#baseProtocol" name="baseProtocol" class="anchor"> Base Protocol </a>
 
 The base protocol consists of a header and a content part (comparable to HTTP). The header and content part are
-separated by a '\r\n'.
+separated by a `\r\n`.
 
 ### <a href="#headerPart" name="headerPart" class="anchor"> Header Part </a>
 
-The header part consists of header fields. Each header field is comprised of a name and a value, separated by ': ' (a colon and a space). The structure of header fields conform to the [HTTP semantic](https://tools.ietf.org/html/rfc7230#section-3.2). Each header field is terminated by '\r\n'. Considering the last header field and the overall header itself are each terminated with '\r\n', and that at least one header is mandatory, this means that two '\r\n' sequences always immediately precede the content part of a message.
+The header part consists of header fields. Each header field is comprised of a name and a value, separated by ': ' (a colon and a space). The structure of header fields conform to the [HTTP semantic](https://tools.ietf.org/html/rfc7230#section-3.2). Each header field is terminated by `\r\n`. Considering the last header field and the overall header itself are each terminated with `\r\n`, and that at least one header is mandatory, this means that two `\r\n` sequences always immediately precede the content part of a message.
 
 Currently the following header fields are supported:
 
@@ -36,7 +36,7 @@ Currently the following header fields are supported:
 | Content-Type      | string      | The mime type of the content part. Defaults to application/vscode-jsonrpc; charset=utf-8 |
 {: .table .table-bordered .table-responsive}
 
-The header part is encoded using the 'ascii' encoding. This includes the '\r\n' separating the header and content part.
+The header part is encoded using the 'ascii' encoding. This includes the `\r\n` separating the header and content part.
 
 ### <a href="#contentPart" name="contentPart" class="anchor"> Content Part </a>
 
@@ -257,7 +257,7 @@ type DocumentUri = string;
 
 #### <a href="#textDocuments" name="textDocuments" class="anchor"> Text Documents </a>
 
-The current protocol is tailored for textual documents whose content can be represented as a string. There is currently no support for binary documents. A position inside a document (see Position definition below) is expressed as a zero-based line and character offset. The offsets are based on a UTF-16 string representation. So a string of the form `a𐐀b` the character offset of the character `a` is 0, the character offset of `𐐀` is 1 and the character offset of b is 3 since `𐐀` is represented using two code units in UTF-16. To ensure that both client and server split the string into the same line representation the protocol specifies the following end-of-line sequences: '\n', '\r\n' and '\r'.
+The current protocol is tailored for textual documents whose content can be represented as a string. There is currently no support for binary documents. A position inside a document (see Position definition below) is expressed as a zero-based line and character offset. The offsets are based on a UTF-16 string representation. So a string of the form `a𐐀b` the character offset of the character `a` is 0, the character offset of `𐐀` is 1 and the character offset of b is 3 since `𐐀` is represented using two code units in UTF-16. To ensure that both client and server split the string into the same line representation the protocol specifies the following end-of-line sequences: `\n`, `\r\n` and `\r`.
 
 Positions are line end character agnostic. So you can not specify a position that denotes `\r|\n` or `\n|` where `|` represents the character offset.
 
