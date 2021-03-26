@@ -26,7 +26,7 @@ separated by a `\r\n`.
 
 ### <a href="#headerPart" name="headerPart" class="anchor"> Header Part </a>
 
-The header part consists of header fields. Each header field is comprised of a name and a value, separated by ': ' (a colon and a space). The structure of header fields conform to the [HTTP semantic](https://tools.ietf.org/html/rfc7230#section-3.2). Each header field is terminated by `\r\n`. Considering the last header field and the overall header itself are each terminated with `\r\n`, and that at least one header is mandatory, this means that two `\r\n` sequences always immediately precede the content part of a message.
+The header part consists of header fields. Each header field is comprised of a name and a value, separated by `: ` (a colon and a space). The structure of header fields conform to the [HTTP semantic](https://tools.ietf.org/html/rfc7230#section-3.2). Each header field is terminated by `\r\n`. Considering the last header field and the overall header itself are each terminated with `\r\n`, and that at least one header is mandatory, this means that two `\r\n` sequences always immediately precede the content part of a message.
 
 Currently the following header fields are supported:
 
@@ -4060,7 +4060,7 @@ export interface DeclarationRegistrationOptions extends DeclarationOptions,
 ```
 
 _Request_:
-* method: 'textDocument/declaration'
+* method: `textDocument/declaration`
 * params: `DeclarationParams` defined as follows:
 
 ```typescript
@@ -4117,7 +4117,7 @@ export interface DefinitionRegistrationOptions
 ```
 
 _Request_:
-* method: 'textDocument/definition'
+* method: `textDocument/definition`
 * params: `DefinitionParams` defined as follows:
 
 ```typescript
@@ -4181,7 +4181,7 @@ export interface TypeDefinitionRegistrationOptions
 ```
 
 _Request_:
-* method: 'textDocument/typeDefinition'
+* method: `textDocument/typeDefinition`
 * params: `TypeDefinitionParams` defined as follows:
 
 ```typescript
@@ -4245,7 +4245,7 @@ export interface ImplementationRegistrationOptions
 ```
 
 _Request_:
-* method: 'textDocument/implementation'
+* method: `textDocument/implementation`
 * params: `ImplementationParams` defined as follows:
 
 ```typescript
@@ -4293,7 +4293,7 @@ export interface ReferenceRegistrationOptions
 ```
 
 _Request_:
-* method: 'textDocument/references'
+* method: `textDocument/references`
 * params: `ReferenceParams` defined as follows:
 
 ```typescript
@@ -4317,8 +4317,8 @@ _Response_:
 #### <a href="#textDocument_documentHighlight" name="textDocument_documentHighlight" class="anchor">Document Highlights Request (:leftwards_arrow_with_hook:)</a>
 
 The document highlight request is sent from the client to the server to resolve a document highlights for a given text document position.
-For programming languages this usually highlights all references to the symbol scoped to this file. However we kept 'textDocument/documentHighlight'
-and 'textDocument/references' separate requests since the first one is allowed to be more fuzzy. Symbol matches usually have a `DocumentHighlightKind`
+For programming languages this usually highlights all references to the symbol scoped to this file. However we kept `textDocument/documentHighlight`
+and `textDocument/references` separate requests since the first one is allowed to be more fuzzy. Symbol matches usually have a `DocumentHighlightKind`
 of `Read` or `Write` whereas fuzzy or textual matches use `Text`as the kind.
 
 _Client Capability_:
