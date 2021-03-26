@@ -36,7 +36,7 @@ Currently the following header fields are supported:
 | Content-Type      | string      | The mime type of the content part. Defaults to application/vscode-jsonrpc; charset=utf-8 |
 {: .table .table-bordered .table-responsive}
 
-The header part is encoded using the 'ascii' encoding. This includes the `\r\n` separating the header and content part.
+The header part is encoded using the `ascii` encoding. This includes the `\r\n` separating the header and content part.
 
 ### <a href="#contentPart" name="contentPart" class="anchor"> Content Part </a>
 
@@ -173,7 +173,7 @@ interface NotificationMessage extends Message {
 
 #### <a href="#dollarRequests" name="dollarRequests" class="anchor"> $ Notifications and Requests </a>
 
-Notification and requests whose methods start with '$/' are messages which are protocol implementation dependent and might not be implementable in all clients or servers. For example if the server implementation uses a single threaded synchronous programming language then there is little a server can do to react to a '$/cancelRequest' notification. If a server or client receives notifications starting with '$/' it is free to ignore the notification. If a server or client receives a requests starting with '$/' it must error the request with error code `MethodNotFound` (e.g. `-32601`).
+Notification and requests whose methods start with `$/` are messages which are protocol implementation dependent and might not be implementable in all clients or servers. For example if the server implementation uses a single threaded synchronous programming language then there is little a server can do to react to a `$/cancelRequest` notification. If a server or client receives notifications starting with `$/` it is free to ignore the notification. If a server or client receives a requests starting with `$/` it must error the request with error code `MethodNotFound` (e.g. `-32601`).
 
 #### <a href="#cancelRequest" name="cancelRequest" class="anchor"> Cancellation Support (:arrow_right: :arrow_left:)</a>
 
